@@ -1,6 +1,6 @@
 /*
 Nelson García Bravatti 22434
-Programación en plataformas móviles
+Programación en plataformas móbiles
 Laboratorio #2
  */
 
@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
 
     while(Opcion > 0 && Opcion <= 5){
         println("Seleccione una opción:")
-        println("1. Crear prefil \n 2. Buscar perfil \n 3. Eliminar perfil \n 4. Agregar hobby \n 5. Salir\n")
+        println("1. Crear perfil \n 2. Buscar perfil \n 3. Eliminar perfil \n 4. Agregar hobby \n 5. Salir\n")
         Opcion = readln().toInt()
         when(Opcion){
             1 -> {

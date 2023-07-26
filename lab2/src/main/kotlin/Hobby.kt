@@ -1,6 +1,6 @@
 /*
 Nelson García Bravatti 22434
-Programación en plataformas móviles
+Programación en plataformas móbiles
 Laboratorio #2
  */
 
