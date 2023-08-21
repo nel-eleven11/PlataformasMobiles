@@ -8,11 +8,14 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -23,6 +26,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,6 +56,7 @@ fun MainCard(modifier: Modifier = Modifier) {
     val image3 = painterResource(R.drawable.niebla3)
     val image4 = painterResource(R.drawable.niebla4)
     val image5 = painterResource(R.drawable.niebla5)
+    //modifier = Modifier.verticalScroll(rememberScrollState())
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
@@ -59,7 +64,8 @@ fun MainCard(modifier: Modifier = Modifier) {
         Text(
             text = "Campus Central",
             fontSize = 20.sp,
-            modifier = Modifier.padding(5.dp)
+            modifier = Modifier.padding(5.dp),
+            fontWeight = FontWeight.Bold
         )
         Image(
             painter = image,
@@ -68,23 +74,30 @@ fun MainCard(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
+                .padding(5.dp)
         )
         Text(
             text = "Destacados",
             fontSize = 20.sp,
-            modifier = Modifier.align(Alignment.Start).padding(5.dp)
+            modifier = Modifier
+                .align(Alignment.Start)
+                .padding(5.dp),
+            fontWeight = FontWeight.Bold
         )
         Row(
-            modifier = Modifier.fillMaxWidth().height(150.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
         ){
-            Column(modifier = Modifier.weight(1f).padding(5.dp)){
-
+            Column(modifier = Modifier
+                .weight(1f)
+                .padding(5.dp)){
                 Image(
                     painter = image2,
                     contentDescription = null,
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier
-                        .height(100.dp)
+                        .height(140.dp)
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
@@ -107,18 +120,21 @@ fun MainCard(modifier: Modifier = Modifier) {
                     Text(
                         text = "Service Now ",
                         fontSize = 20.sp,
-                        modifier = modifier.padding(5.dp),
-                        color = Color.White
+                        modifier = modifier.padding(7.dp),
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }
-            Column(modifier = Modifier.weight(1f).padding(5.dp)){
+            Column(modifier = Modifier
+                .weight(1f)
+                .padding(5.dp)){
                 Image(
                     painter = image3,
                     contentDescription = null,
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier
-                        .height(100.dp)
+                        .height(140.dp)
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
@@ -141,8 +157,9 @@ fun MainCard(modifier: Modifier = Modifier) {
                     Text(
                         text = "Actualidad UVG",
                         fontSize = 20.sp,
-                        modifier = modifier.padding(5.dp),
-                        color = Color.White
+                        modifier = modifier.padding(7.dp),
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }
@@ -150,18 +167,25 @@ fun MainCard(modifier: Modifier = Modifier) {
         Text(
             text = "Servicios y Recursos",
             fontSize = 20.sp,
-            modifier = Modifier.align(Alignment.Start).padding(5.dp)
+            modifier = Modifier
+                .align(Alignment.Start)
+                .padding(5.dp),
+            fontWeight = FontWeight.Bold
         )
         Row(
-            modifier = Modifier.fillMaxWidth().height(150.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
         ){
-            Column(modifier = Modifier.weight(1f).padding(5.dp)){
+            Column(modifier = Modifier
+                .weight(1f)
+                .padding(5.dp)){
                 Image(
                     painter = image4,
                     contentDescription = null,
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier
-                        .height(100.dp)
+                        .height(140.dp)
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
@@ -180,22 +204,26 @@ fun MainCard(modifier: Modifier = Modifier) {
                             shape = RoundedCornerShape(4.dp)
                         )
                         .clip(RoundedCornerShape(4.dp))
+
                 ){
                     Text(
-                        text = "Servicios Estudiantiles",
+                        text = "Directorio Servi",
                         fontSize = 20.sp,
-                        modifier = modifier.padding(5.dp),
-                        color = Color.White
+                        modifier = modifier.padding(7.dp),
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }
-            Column(modifier = Modifier.weight(1f).padding(5.dp)){
+            Column(modifier = Modifier
+                .weight(1f)
+                .padding(5.dp)){
                 Image(
                     painter = image5,
                     contentDescription = null,
                     contentScale = ContentScale.FillWidth,
                     modifier = Modifier
-                        .height(100.dp)
+                        .height(140.dp)
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
@@ -218,8 +246,9 @@ fun MainCard(modifier: Modifier = Modifier) {
                     Text(
                         text = "Portal Web",
                         fontSize = 20.sp,
-                        modifier = modifier.padding(5.dp),
-                        color = Color.White
+                        modifier = modifier.padding(7.dp),
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }
