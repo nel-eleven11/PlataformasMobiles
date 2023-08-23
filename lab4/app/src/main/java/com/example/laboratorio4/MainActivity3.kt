@@ -123,12 +123,21 @@ fun MainCard3(modifier: Modifier = Modifier){
             )
         }
         Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
-                .padding(5.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+                .padding(5.dp)
+                .drawBehind {
+                    val borderSize = 1.dp.toPx()
+                    drawLine(
+                        color = Color.LightGray,
+                        start = Offset(x = 0f, y = size.height),
+                        end = Offset(x = size.width, y = size.height),
+                        strokeWidth = borderSize
+                    )
+                }
         ){
             Text(
                 text = "Logout",

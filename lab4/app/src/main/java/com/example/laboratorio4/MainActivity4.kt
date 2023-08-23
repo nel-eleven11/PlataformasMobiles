@@ -75,11 +75,11 @@ fun MainCard4(modifier: Modifier = Modifier){
                 .fillMaxWidth()
                 .height(50.dp)
                 .drawBehind {
-                    val borderSize = 2.dp.toPx()
+                    val borderSize = 1.dp.toPx()
                     drawLine(
                         color = Color.LightGray,
-                        start = Offset(x = 0f, y = 0f),
-                        end = Offset(x = size.width, y = 0f),
+                        start = Offset(x = 0f, y = size.height),
+                        end = Offset(x = size.width, y = size.height),
                         strokeWidth = borderSize
                     )
                 }
@@ -115,44 +115,26 @@ fun MainCard4(modifier: Modifier = Modifier){
             modifier = Modifier
                 .fillMaxWidth()
                 .height(70.dp)
-                .drawBehind {
-                    val borderSize = 1.dp.toPx()
-                    drawLine(
-                        color = Color.LightGray,
-                        start = Offset(x = 0f, y = 0f),
-                        end = Offset(x = size.width, y = 0f),
-                        strokeWidth = borderSize
-                    )
-                }
         ){
             HorizontalCardDoubleTextRoundImg(imagen = R.drawable.emergencia_foreground, titulo ="Emergencias",
                 texto ="Si se presenta un incidente o percance por favor marca el número de emergencia y rápidamente te apoyamos.")
-            NumberCard(numero = "5978-1736")
         }
+        NumberCard(numero = "5978-1736")
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(90.dp)
-                .drawBehind {
-                    val borderSize = 1.dp.toPx()
-                    drawLine(
-                        color = Color.LightGray,
-                        start = Offset(x = 0f, y = 0f),
-                        end = Offset(x = size.width, y = 0f),
-                        strokeWidth = borderSize
-                    )
-                }
+                .height(115.dp)
         ){
             HorizontalCardDoubleTextRoundImg(imagen = R.drawable.niebla14, titulo ="Clínica UVG",
                 texto ="La Clínica UVG, presta los siguientes servicios:\n" +
-                        "°Atención a Emergencias" +"°Atención Primaria a Enfermedades Comunes" +
+                        "°Atención a Emergencias\n°Atención Primaria a Enfermedades Comunes\n" +
                         "°Plan Educacional sobre Enfermedades\n" +
                         "Horario de Atención: 7:00a.m. a 8:30p.m." +
                         "Campues Central Edificio F 119-120.")
-            NumberCard(numero = "2507-1500 ex 21312")
         }
+        NumberCard(numero = "2507-1500 ex 21312")
     }
 }
 
@@ -166,7 +148,7 @@ fun HorizontalCardDoubleTextRoundImg(@DrawableRes imagen: Int, titulo: String, t
     ){
         Box(
             modifier = Modifier
-                .align(Alignment.CenterVertically)
+                .align(Alignment.Top)
                 .clip(RoundedCornerShape(4.dp))
         ){
             Image(
@@ -174,6 +156,8 @@ fun HorizontalCardDoubleTextRoundImg(@DrawableRes imagen: Int, titulo: String, t
                 contentDescription = null,
                 modifier = Modifier
                     .padding(5.dp)
+                    .width(50.dp)
+                    .height(50.dp)
                     .border(
                         width = 1.dp,
                         color = Color.White,
@@ -186,29 +170,40 @@ fun HorizontalCardDoubleTextRoundImg(@DrawableRes imagen: Int, titulo: String, t
                 contentScale = ContentScale.Crop
             )
         }
-        Box(
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top,
             modifier = Modifier
-                .align(Alignment.CenterVertically)
                 .fillMaxWidth()
                 .fillMaxHeight()
         ){
-            Text(
-                text = titulo,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Start,
+            Box(
                 modifier = Modifier
-                    .padding(4.dp)
-                    .align(Alignment.TopStart)
-            )
-            Text(
-                text = texto,
-                fontSize = 10.sp,
-                textAlign = TextAlign.Start,
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = titulo,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier
+                        .padding(4.dp)
+                )
+            }
+            Box(
                 modifier = Modifier
-                    .padding(4.dp)
-                    .align(Alignment.BottomStart)
-            )
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+            ){
+                Text(
+                    text = texto,
+                    fontSize = 10.sp,
+                    modifier = Modifier
+                        .padding(2.dp),
+                    lineHeight = 12.sp,
+
+                )
+            }
         }
     }
 }
@@ -219,6 +214,15 @@ fun NumberCard(numero: String,modifier: Modifier = Modifier){
         color = Color.Green,
         modifier = Modifier
             .fillMaxWidth()
+            .drawBehind {
+                val borderSize = 2.dp.toPx()
+                drawLine(
+                    color = Color.LightGray,
+                    start = Offset(x = 0f, y = size.height),
+                    end = Offset(x = size.width, y = size.height),
+                    strokeWidth = borderSize
+                )
+            }
             .border(
                 width = 7.dp,
                 color = Color.White,
@@ -232,6 +236,21 @@ fun NumberCard(numero: String,modifier: Modifier = Modifier){
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
+                .drawBehind {
+                    val borderSize = 2.dp.toPx()
+                    drawLine(
+                        color = Color.LightGray,
+                        start = Offset(x = 0f, y = size.height),
+                        end = Offset(x = size.width, y = size.height),
+                        strokeWidth = borderSize
+                    )
+                }
+                .border(
+                    width = 7.dp,
+                    color = Color.White,
+                    shape = RoundedCornerShape(4.dp)
+                )
+                .clip(RoundedCornerShape(4.dp))
         ){
             Box(
                 modifier = Modifier
