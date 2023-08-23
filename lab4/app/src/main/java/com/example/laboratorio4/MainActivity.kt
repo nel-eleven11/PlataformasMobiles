@@ -56,7 +56,6 @@ fun MainCard(modifier: Modifier = Modifier) {
     val image3 = painterResource(R.drawable.niebla3)
     val image4 = painterResource(R.drawable.niebla4)
     val image5 = painterResource(R.drawable.niebla5)
-    //modifier = Modifier.verticalScroll(rememberScrollState())
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
@@ -82,7 +81,8 @@ fun MainCard(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .align(Alignment.Start)
                 .padding(5.dp),
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            color = Color.Gray
         )
         Row(
             modifier = Modifier
@@ -100,7 +100,7 @@ fun MainCard(modifier: Modifier = Modifier) {
                         .height(140.dp)
                         .fillMaxWidth()
                         .border(
-                            width = 1.dp,
+                            width = 0.dp,
                             color = Color.White,
                             shape = RoundedCornerShape(4.dp)
                         )
@@ -111,7 +111,7 @@ fun MainCard(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(
-                            width = 1.dp,
+                            width = 0.dp,
                             color = Color.Green,
                             shape = MaterialTheme.shapes.medium
                         )
@@ -137,19 +137,19 @@ fun MainCard(modifier: Modifier = Modifier) {
                         .height(140.dp)
                         .fillMaxWidth()
                         .border(
-                            width = 1.dp,
+                            width = 0.dp,
                             color = Color.White,
                             shape = RoundedCornerShape(4.dp)
                         )
                         .clip(RoundedCornerShape(4.dp))
                 )
                 Surface(
-                    color = Color.Green,
+                    color = Color.Gray,
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(
-                            width = 1.dp,
-                            color = Color.Green,
+                            width = 0.dp,
+                            color = Color.Gray,
                             shape = RoundedCornerShape(4.dp)
                         )
                         .clip(RoundedCornerShape(4.dp))
@@ -170,7 +170,8 @@ fun MainCard(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .align(Alignment.Start)
                 .padding(5.dp),
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            color = Color.Gray
         )
         Row(
             modifier = Modifier
@@ -188,7 +189,7 @@ fun MainCard(modifier: Modifier = Modifier) {
                         .height(140.dp)
                         .fillMaxWidth()
                         .border(
-                            width = 1.dp,
+                            width = 0.dp,
                             color = Color.White,
                             shape = RoundedCornerShape(4.dp)
                         )
@@ -199,7 +200,7 @@ fun MainCard(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(
-                            width = 1.dp,
+                            width = 0.dp,
                             color = Color.Green,
                             shape = RoundedCornerShape(4.dp)
                         )
@@ -226,19 +227,19 @@ fun MainCard(modifier: Modifier = Modifier) {
                         .height(140.dp)
                         .fillMaxWidth()
                         .border(
-                            width = 1.dp,
+                            width = 0.dp,
                             color = Color.White,
                             shape = RoundedCornerShape(4.dp)
                         )
                         .clip(RoundedCornerShape(4.dp))
                 )
                 Surface(
-                    color = Color.Green,
+                    color = Color.Gray,
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(
-                            width = 1.dp,
-                            color = Color.Green,
+                            width = 0.dp,
+                            color = Color.Gray,
                             shape = RoundedCornerShape(4.dp)
                         )
                         .clip(RoundedCornerShape(4.dp))
