@@ -1,6 +1,7 @@
 package com.example.migaleriaproy
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,7 +12,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
@@ -26,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -50,12 +54,17 @@ class MainGalery : ComponentActivity() {
             }
         }
     }
+    @Deprecated("Deprecated", ReplaceWith("finishAffinity()"))
+    override fun onBackPressed() {
+        finishAffinity()
+    }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Galery(modifier: Modifier = Modifier){
     val context = LocalContext.current
+    val configuracionVista = LocalConfiguration.current
     val jugadores = listOf(
         R.drawable.cristiano,
         R.drawable.kroos,
@@ -67,6 +76,12 @@ fun Galery(modifier: Modifier = Modifier){
         R.drawable.modric,
         R.drawable.casemiro,
         R.drawable.lewa,
+        R.drawable.marcelo,
+        R.drawable.alaba,
+        R.drawable.ribery,
+        R.drawable.robben,
+        R.drawable.alonso,
+        R.drawable.casillas
     )
     val jugInfo = listOf(
         "Cristiano Ronaldo",
@@ -79,93 +94,194 @@ fun Galery(modifier: Modifier = Modifier){
         "Luka Modric",
         "Casemiro",
         "Robert Lewandowski",
+        "Marcelo Vieira",
+        "David Alaba",
+        "Franck Ribery",
+        "Arjen Robben",
+        "Xabi Alonso",
+        "Iker Casillas"
     )
     val pagerState = rememberPagerState()
     val scope = rememberCoroutineScope()
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-    ){
-        HorizontalPager(
-            pageCount = jugadores.size,
-            state = pagerState,
-            pageSize = PageSize.Fill
-        ){index ->
-            Image(
-                painter = painterResource(id = jugadores[index]),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
-            )
-        }
-
-        Box(
-            modifier = Modifier
-                .offset(y = (20).dp)
-                .fillMaxWidth(0.5f)
-                .clip(RoundedCornerShape(100))
-                .background(MaterialTheme.colorScheme.background.copy(alpha = 0.5f))
-                .align(Alignment.TopCenter)
-        ){
-            IconButton(
-                onClick = { val intent = Intent(context, MainActivity::class.java)
-                    context.startActivity(intent)},
+    when(configuracionVista.orientation) {
+        Configuration.ORIENTATION_PORTRAIT -> {
+            Box(
                 modifier = Modifier
-                    .align(Alignment.Center)
                     .fillMaxWidth()
             ){
-                Icon(painter = painterResource(id = R.drawable.logout_foreground) , contentDescription = "Terminar Sesión")
+                HorizontalPager(
+                    pageCount = jugadores.size,
+                    state = pagerState,
+                    pageSize = PageSize.Fill
+                ){index ->
+                    Image(
+                        painter = painterResource(id = jugadores[index]),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+
+                Box(
+                    modifier = Modifier
+                        .offset(y = (20).dp)
+                        .fillMaxWidth(0.5f)
+                        .clip(RoundedCornerShape(100))
+                        .background(MaterialTheme.colorScheme.background.copy(alpha = 0.5f))
+                        .align(Alignment.TopCenter)
+                ){
+                    IconButton(
+                        onClick = { val intent = Intent(context, MainActivity::class.java)
+                            context.startActivity(intent)},
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .fillMaxWidth()
+                    ){
+                        Icon(painter = painterResource(id = R.drawable.logout_foreground) , contentDescription = "Terminar Sesión")
+                    }
+                }
+
+                Box(
+                    modifier = Modifier
+                        .offset(y = -(90).dp)
+                        .fillMaxWidth(0.7f)
+                        .height(50.dp)
+                        .clip(RoundedCornerShape(100))
+                        .background(MaterialTheme.colorScheme.background.copy(alpha = 0.5f))
+                        .align(Alignment.BottomCenter)
+                ){
+                    Text(
+                        text = jugInfo[pagerState.currentPage],
+                        textAlign = TextAlign.Center,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .fillMaxWidth()
+                            .align(Alignment.Center)
+                    )
+                }
+
+                Box(
+                    modifier = Modifier
+                        .offset(y = -(16).dp)
+                        .fillMaxWidth(0.5f)
+                        .clip(RoundedCornerShape(100))
+                        .background(MaterialTheme.colorScheme.background)
+                        .padding(8.dp)
+                        .align(Alignment.BottomCenter)
+                ){
+                    IconButton(
+                        onClick = {
+                            scope.launch{
+                                pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                            }
+                        },
+                        modifier = Modifier.align(Alignment.CenterStart),
+                    ) {
+                        Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "Anterior" )
+                    }
+                    IconButton(
+                        onClick = {
+                            scope.launch{
+                                pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                            }
+                        },                    modifier = Modifier.align(Alignment.CenterEnd),
+                    ) {
+                        Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "Siguiente" )
+                    }
+                }
             }
         }
-
-        Box(
-            modifier = Modifier
-                .offset(y = -(90).dp)
-                .fillMaxWidth(0.7f)
-                .height(50.dp)
-                .clip(RoundedCornerShape(100))
-                .background(MaterialTheme.colorScheme.background.copy(alpha = 0.5f))
-                .align(Alignment.BottomCenter)
-        ){
-            Text(
-                text = jugInfo[pagerState.currentPage],
-                textAlign = TextAlign.Center,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
+        Configuration.ORIENTATION_LANDSCAPE -> {
+            Box(
                 modifier = Modifier
-                    .padding(5.dp)
                     .fillMaxWidth()
-                    .align(Alignment.Center)
-            )
-        }
+            ){
+                HorizontalPager(
+                    pageCount = jugadores.size,
+                    state = pagerState,
+                    pageSize = PageSize.Fill
+                ){index ->
+                    Image(
+                        painter = painterResource(id = jugadores[index]),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState())
+                    )
+                }
 
-        Box(
-            modifier = Modifier
-                .offset(y = -(16).dp)
-                .fillMaxWidth(0.5f)
-                .clip(RoundedCornerShape(100))
-                .background(MaterialTheme.colorScheme.background)
-                .padding(8.dp)
-                .align(Alignment.BottomCenter)
-        ){
-            IconButton(
-                onClick = {
-                    scope.launch{
-                        pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                Box(
+                    modifier = Modifier
+                        .offset(y = (20).dp)
+                        .fillMaxWidth(0.15f)
+                        .clip(RoundedCornerShape(100))
+                        .background(MaterialTheme.colorScheme.background.copy(alpha = 0.5f))
+                        .align(Alignment.TopStart)
+                ){
+                    IconButton(
+                        onClick = { val intent = Intent(context, MainActivity::class.java)
+                            context.startActivity(intent)},
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .fillMaxWidth()
+                    ){
+                        Icon(painter = painterResource(id = R.drawable.logout_foreground) , contentDescription = "Terminar Sesión")
                     }
-                },
-                modifier = Modifier.align(Alignment.CenterStart),
-            ) {
-                Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "Anterior" )
-            }
-            IconButton(
-                onClick = {
-                    scope.launch{
-                        pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                }
+
+                Box(
+                    modifier = Modifier
+                        .offset(y = -(90).dp)
+                        .fillMaxWidth(0.35f)
+                        .height(50.dp)
+                        .clip(RoundedCornerShape(100))
+                        .background(MaterialTheme.colorScheme.background.copy(alpha = 0.5f))
+                        .align(Alignment.BottomCenter)
+                ){
+                    Text(
+                        text = jugInfo[pagerState.currentPage],
+                        textAlign = TextAlign.Center,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .fillMaxWidth()
+                            .align(Alignment.Center)
+                    )
+                }
+
+                Box(
+                    modifier = Modifier
+                        .offset(y = -(16).dp)
+                        .width(120.dp)
+                        .clip(RoundedCornerShape(100))
+                        .background(MaterialTheme.colorScheme.background)
+                        .padding(8.dp)
+                        .align(Alignment.BottomCenter)
+                ){
+                    IconButton(
+                        onClick = {
+                            scope.launch{
+                                pagerState.animateScrollToPage(pagerState.currentPage - 1)
+                            }
+                        },
+                        modifier = Modifier.align(Alignment.CenterStart),
+                    ) {
+                        Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "Anterior" )
                     }
-                },                    modifier = Modifier.align(Alignment.CenterEnd),
-            ) {
-                Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "Siguiente" )
+                    IconButton(
+                        onClick = {
+                            scope.launch{
+                                pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                            }
+                        },                    modifier = Modifier.align(Alignment.CenterEnd),
+                    ) {
+                        Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "Siguiente" )
+                    }
+                }
             }
         }
     }
