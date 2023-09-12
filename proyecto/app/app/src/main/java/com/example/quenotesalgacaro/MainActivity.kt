@@ -353,25 +353,27 @@ fun MainScreen() {
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Bottom
-    ){
+    ) {
+        Spacer(modifier = Modifier
+            .height(1.dp)
+            .fillMaxWidth()
+            .padding(18.dp, 0.dp, 18.dp, 0.dp)
+            .background(color = MaterialTheme.colorScheme.primary)
+        )
         Surface (
             modifier = Modifier
                 .fillMaxWidth()
                 .height(60.dp),
             color = MaterialTheme.colorScheme.surface
         ){
-            NavigationBar(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(alignment = Alignment.CenterHorizontally)
-            )
+            NavigationBar()
         }
     }
 
 }
 
 @Composable
-fun NavigationBar(modifier: Modifier = Modifier){
+fun NavigationBar(){
     Row (
         modifier = Modifier
             .fillMaxWidth()
