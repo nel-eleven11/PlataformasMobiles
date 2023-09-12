@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,6 +35,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -41,6 +43,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -161,6 +164,9 @@ fun MainScreen() {
                         text = "Fecha"
                     )
                 },
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                )
             )
             ExposedDropdownMenu(
                 expanded = expandedDate,
@@ -207,6 +213,9 @@ fun MainScreen() {
                                 text = "Wallet"
                             )
                         },
+                        colors = TextFieldDefaults.textFieldColors(
+                            containerColor = MaterialTheme.colorScheme.surface,
+                        )
                     )
                     ExposedDropdownMenu(
                         expanded = expandedWallet,
@@ -345,11 +354,18 @@ fun MainScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Bottom
     ){
-        NavigationBar(
+        Surface (
             modifier = Modifier
                 .fillMaxWidth()
-                .align(alignment = Alignment.CenterHorizontally)
-        )
+                .height(60.dp),
+            color = MaterialTheme.colorScheme.surface
+        ){
+            NavigationBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(alignment = Alignment.CenterHorizontally)
+            )
+        }
     }
 
 }
@@ -368,6 +384,7 @@ fun NavigationBar(modifier: Modifier = Modifier){
             onClick = { /*TODO*/ },
             modifier = Modifier
                 .width(48.dp)
+                .weight(1f)
         ) {
             Icon(
                 painter = painterResource(
@@ -382,6 +399,7 @@ fun NavigationBar(modifier: Modifier = Modifier){
             onClick = { /*TODO*/ },
             modifier = Modifier
                 .width(48.dp)
+                .weight(1f)
         ) {
             Icon(
                 painter = painterResource(
@@ -395,21 +413,32 @@ fun NavigationBar(modifier: Modifier = Modifier){
         IconButton(
             onClick = { /*TODO*/ },
             modifier = Modifier
-                .width(48.dp)
+                .width(60.dp)
+                .height(60.dp)
+                .weight(1f)
         ) {
-            Icon(
-                painter = painterResource(
-                    id = R.drawable.mas_foreground,
-                ),
-                contentDescription = "add",
-                tint = MaterialTheme.colorScheme.onSurface
-            )
+            Surface (
+                modifier = Modifier
+                    .width(60.dp)
+                    .height(60.dp),
+                shape = MaterialTheme.shapes.large,
+                color = MaterialTheme.colorScheme.primary
+            ) {
+                Icon(
+                    painter = painterResource(
+                        id = R.drawable.mas_foreground,
+                    ),
+                    contentDescription = "add",
+                    tint = MaterialTheme.colorScheme.onPrimary
+                )
+            }
         }
 
         IconButton(
             onClick = { /*TODO*/ },
             modifier = Modifier
                 .width(48.dp)
+                .weight(1f)
         ) {
             Icon(
                 painter = painterResource(
@@ -424,6 +453,7 @@ fun NavigationBar(modifier: Modifier = Modifier){
             onClick = { /*TODO*/ },
             modifier = Modifier
                 .width(48.dp)
+                .weight(1f)
         ) {
             Icon(
                 painter = painterResource(
