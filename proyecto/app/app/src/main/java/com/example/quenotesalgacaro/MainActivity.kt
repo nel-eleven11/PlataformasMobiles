@@ -44,9 +44,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.Cyan
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -70,7 +78,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalTextApi::class)
 @Composable
 fun MainScreen() {
     val context = LocalContext.current
@@ -106,13 +114,21 @@ fun MainScreen() {
                 color = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary
             ) {
+                val gradientColors = listOf(Cyan , White , Blue)
                 Text(
                     text = "Que no te salga caro",
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(12.dp),
-                    style = MaterialTheme.typography.titleLarge,
                     textAlign = TextAlign.Center,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                    fontWeight = FontWeight.Bold,
+                    style = TextStyle(
+                        brush = Brush.linearGradient(
+                            colors = gradientColors
+                        )
+                    )
 
                 )
             }
@@ -353,27 +369,25 @@ fun MainScreen() {
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Bottom
-    ) {
-        Spacer(modifier = Modifier
-            .height(1.dp)
-            .fillMaxWidth()
-            .padding(18.dp, 0.dp, 18.dp, 0.dp)
-            .background(color = MaterialTheme.colorScheme.primary)
-        )
+    ){
         Surface (
             modifier = Modifier
                 .fillMaxWidth()
                 .height(60.dp),
             color = MaterialTheme.colorScheme.surface
         ){
-            NavigationBar()
+            NavigationBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(alignment = Alignment.CenterHorizontally)
+            )
         }
     }
 
 }
 
 @Composable
-fun NavigationBar(){
+fun NavigationBar(modifier: Modifier = Modifier){
     Row (
         modifier = Modifier
             .fillMaxWidth()
