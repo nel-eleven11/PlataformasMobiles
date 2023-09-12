@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -335,6 +336,100 @@ fun MainScreen() {
                     }
                 }
             }
+        }
+    }
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Bottom
+    ){
+        NavigationBar(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(alignment = Alignment.CenterHorizontally)
+        )
+    }
+
+}
+
+@Composable
+fun NavigationBar(modifier: Modifier = Modifier){
+    Row (
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+
+        IconButton(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .width(48.dp)
+        ) {
+            Icon(
+                painter = painterResource(
+                    id = R.drawable.system_outline_41_home
+                ),
+                contentDescription = "Home",
+                tint = MaterialTheme.colorScheme.onSurface
+            )
+        }
+
+        IconButton(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .width(48.dp)
+        ) {
+            Icon(
+                painter = painterResource(
+                    id = R.drawable.system_outline_43_pie_chart_diagram
+                ),
+                contentDescription = "Statistics",
+                tint = MaterialTheme.colorScheme.onSurface
+            )
+        }
+
+        IconButton(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .width(48.dp)
+        ) {
+            Icon(
+                painter = painterResource(
+                    id = R.drawable.mas_foreground,
+                ),
+                contentDescription = "add",
+                tint = MaterialTheme.colorScheme.onSurface
+            )
+        }
+
+        IconButton(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .width(48.dp)
+        ) {
+            Icon(
+                painter = painterResource(
+                    id = R.drawable.system_outline_68_savings
+                ),
+                contentDescription = "Funds",
+                tint = MaterialTheme.colorScheme.onSurface
+            )
+        }
+
+        IconButton(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .width(48.dp)
+        ) {
+            Icon(
+                painter = painterResource(
+                    id = R.drawable.system_outline_5_wallet
+                ),
+                contentDescription = "Budget",
+                tint = MaterialTheme.colorScheme.onSurface
+            )
         }
     }
 }
