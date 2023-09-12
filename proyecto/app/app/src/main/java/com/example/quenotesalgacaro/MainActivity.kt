@@ -5,9 +5,11 @@ import android.widget.DatePicker
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,6 +19,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -297,6 +300,7 @@ fun MainScreen() {
         ) {
             items(elementosTabla.size) { index ->
                 Row {
+
                     Text(
                         text = elementosTabla[index].dia,
                         modifier = Modifier
@@ -317,16 +321,16 @@ fun MainScreen() {
                             .weight(2f)
                             .padding(12.dp)
                     )
-                    Button(
-                        onClick = {
-                            // TODO:
-                        },
+                    IconButton(onClick = { /*TODO*/ },
                         modifier = Modifier
                             .weight(2f)
-                    ) {
-                        Text(
-                            text = "Ver más",
-                            fontSize = 9.sp
+                            ) {
+                        Icon(
+                            painter = painterResource(
+                                id = R.drawable.option
+                            ),
+                            contentDescription = "Opciones",
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 }
