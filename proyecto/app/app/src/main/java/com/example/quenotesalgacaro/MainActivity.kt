@@ -346,6 +346,10 @@ fun MainScreen() {
                 }
             }
         }
+        Spacer(modifier = Modifier
+            .height(61.dp)
+            .fillMaxWidth()
+        )
 
 
     }
@@ -371,6 +375,7 @@ fun MainScreen() {
     }
 
 }
+
 
 @Composable
 fun NavigationBar(){
