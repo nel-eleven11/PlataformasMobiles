@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -41,6 +43,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.quenotesalgacaro.ui.theme.QueNoTeSalgaCaroTheme
 
 class MainActivity : ComponentActivity() {
@@ -75,6 +78,18 @@ fun MainScreen() {
     val total = 12000.00
     val progress = (total - saldo)/total
 
+    var elementosTabla = mutableListOf<FilaTabla>(
+        FilaTabla("1", "Comida", "Q100.00"),
+        FilaTabla("2", "Comida", "Q100.00"),
+        FilaTabla("2","Cine","Q50.00"),
+        FilaTabla("3", "Comida", "Q100.00"),
+        FilaTabla("4", "Comida", "Q100.00"),
+        FilaTabla("5", "Comida", "Q100.00"),
+        FilaTabla("6", "Gasolina", "Q400.00"),
+        FilaTabla("7", "Comida", "Q100.00"),
+        FilaTabla("8", "Comida", "Q100.00"),
+        FilaTabla("9","Super","Q2000.00")
+    )
     Column (
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -246,6 +261,75 @@ fun MainScreen() {
                     color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.align(alignment = Alignment.Center)
                 )
+            }
+        }
+        Row {
+            Text(
+                text = "Dia",
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(12.dp),
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Text(
+                text = "Cantegoria",
+                modifier = Modifier
+                    .weight(3f)
+                    .padding(12.dp)
+            )
+            Text(
+                text = "Monto",
+                modifier = Modifier
+                    .weight(2f)
+                    .padding(12.dp)
+            )
+            Text(
+                text = "",
+                modifier = Modifier
+                    .weight(2f)
+                    .padding(12.dp)
+            )
+        }
+        LazyColumn (
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            items(elementosTabla.size) { index ->
+                Row {
+                    Text(
+                        text = elementosTabla[index].dia,
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(12.dp),
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Text(
+                        text = elementosTabla[index].categoria,
+                        modifier = Modifier
+                            .weight(3f)
+                            .padding(12.dp)
+                    )
+                    Text(
+                        text = elementosTabla[index].monto,
+                        modifier = Modifier
+                            .weight(2f)
+                            .padding(12.dp)
+                    )
+                    Button(
+                        onClick = {
+                            // TODO:
+                        },
+                        modifier = Modifier
+                            .weight(2f)
+                    ) {
+                        Text(
+                            text = "Ver más",
+                            fontSize = 9.sp
+                        )
+                    }
+                }
             }
         }
     }
